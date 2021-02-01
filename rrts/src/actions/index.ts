@@ -15,9 +15,16 @@ interface ToDo {
 }
 
 
+// this is optional but good to use 
+// we can make an interface to make sure we have the correct actions
+interface FetchTodoActions {
+    // this will make sure we are passing the correct actions and props
+    type:ActionTypes.fetchTodo;
+    payload:ToDo[]
+}
 
 const url = "http://jsonplaceholder.typicode.com/todos"
-export const fecthTodes = () => {
+export const fetchTodo = () => {
     // here , we are gonna make a network request
     //  which means it is an async. we have to make use of a redux thunk
     // since, we are using the redux-thunk , we need a dispatch
@@ -31,7 +38,8 @@ export const fecthTodes = () => {
     return async (dispatch:Dispatch) => {
         const response = await axios.get<ToDo[]>(url)
 
-        dispatch({
+        dispatch<FetchTodoActions>({
+        // because of the FetchTodoActions , we cant just randomly props and actions
             type:ActionTypes.fetchTodo,
             payload:response.data
         })
