@@ -9,15 +9,25 @@ export interface AppProps {
     fetchTodo():any
 }
 export class _App extends React.Component<AppProps>{
-
-    componentDidMount(){
+    onClickButton = ():void => {
         this.props.fetchTodo()
+    }
+
+    renderList():JSX.Element[]{
+        return this.props.todo.map((item:ToDo) => {
+            return (
+                <div>{item.title}</div>
+            )
+        })
     }
 
     render():JSX.Element{
         console.log("props",this.props.todo)
         return (
-            <div>HEllo world</div>
+            <div>
+                <button onClick={this.onClickButton}>Fetch</button>
+                {this.props.todo.length === 0 ? <p>Your List Is Empty</p>: this.renderList()}
+            </div>
         )
     }
 }
