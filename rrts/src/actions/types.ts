@@ -8,5 +8,6 @@ export enum ActionTypes {
     // ts will assume its value 0 like fetchTodo = 0
     // actually, in redux we only need a unique value that based 
     // on it so we can dispatch actions
-    fetchTodo
+    fetchTodo,
+    deleteToDo
 }

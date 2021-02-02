@@ -1,6 +1,6 @@
 import React from "react"
 import {connect} from "react-redux"
-import {ToDo , fetchTodo} from "../actions/index"
+import {ToDo , fetchTodo} from "../actions"
 import {StoreState} from "../reducers"
 
 

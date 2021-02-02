@@ -19,7 +19,6 @@ with TS , we can easily spot the error in our editor because we are gonna get no
 3. tons of imports
 4. Redux inherently functional in nature, tough integration with TS classes.
 
-
 ### Setup
 to create a react app with ts using the following command line
 `npx create-react-app app-name --template typescript`
@@ -54,4 +53,12 @@ function  App(props:TypesOfProps):JSX.Element{
 ### Now, lets play with react and redux
 since we are gonna fetch data, we need to install third-party called axios that helps with that.
 Also , we need the redux, react-redux and middle ware package manager called redux-thunk
+
 `npm install axios redux react-redux redux-thunk`
+
+
+** Note ** 
+Before creating the  [todo](./rrts/src/actions/todo.ts), we used to have one single file that include all of our actions 
+and the needed logic. Imagine, if you have many actions for users and images ...etc. 
+In programming , to make your life easier, then try to break our your flies into small files. Each one has is purpose and small chunk of code.
+Personally, I would always create generic file that includes every thing that folder has and export it form there.

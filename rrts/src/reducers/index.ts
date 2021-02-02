@@ -1,6 +1,6 @@
 import {combineReducers} from "redux"
 import {todoReducer} from "./todo"
-import {ToDo} from "../actions/index"
+import {ToDo} from "../actions"
 
 export interface StoreState {
     todo:ToDo[]
