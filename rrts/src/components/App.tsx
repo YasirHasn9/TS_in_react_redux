@@ -9,9 +9,25 @@ export interface AppProps {
     fetchTodo:Function;
     removeTodo: Function
 }
-export class _App extends React.Component<AppProps>{
+
+interface AppState {
+    fetching: boolean;
+}
+export class _App extends React.Component<AppProps, AppState>{
+    constructor(props:AppProps){
+        super(props)
+        this.state = {
+            fetching:false
+        }
+    }
+    componentDidUpdate(prevProps:AppProps ):void {
+        if(!prevProps.todo.length && this.props.todo.length){
+            this.setState({fetching:false})
+        }
+    }
     onButtonClick = ():void => {
         this.props.fetchTodo()
+        this.setState({fetching:true})
     }
 
     onTodoClick = (id:number):void => {
@@ -34,7 +50,10 @@ export class _App extends React.Component<AppProps>{
         return (
             <div>
                 <button onClick={this.onButtonClick}>Fetch</button>
-                {this.props.todo.length === 0 ? <p>Your List Is Empty</p>: this.renderList()}
+                {
+                    this.state.fetching ? "LOADING" : null
+                }
+                {this.renderList()}
             </div>
         )
     }
