@@ -52,7 +52,7 @@ export const fetchTodo = () => {
     }
 }
 
-export const deleteToDo = (id:number) => {
+export const removeTodo = (id:number) => {
     return (dispatch:Dispatch) => {
         dispatch<DeleteToDoAction>({
             type:ActionTypes.deleteToDo,

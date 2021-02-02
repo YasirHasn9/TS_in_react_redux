@@ -1,31 +1,39 @@
 import React from "react"
 import {connect} from "react-redux"
-import {ToDo , fetchTodo} from "../actions"
+import {ToDo , fetchTodo ,removeTodo} from "../actions"
 import {StoreState} from "../reducers"
 
 
 export interface AppProps {
     todo:ToDo[];
-    fetchTodo():any
+    fetchTodo:Function;
+    removeTodo: Function
 }
 export class _App extends React.Component<AppProps>{
-    onClickButton = ():void => {
+    onButtonClick = ():void => {
         this.props.fetchTodo()
+    }
+
+    onTodoClick = (id:number):void => {
+        this.props.removeTodo(id)
     }
 
     renderList():JSX.Element[]{
         return this.props.todo.map((item:ToDo) => {
             return (
-                <div>{item.title}</div>
+                <div onClick={() => 
+                    this.onTodoClick(item.id)} 
+                    key={item.id}>
+                        {item.title}
+                </div>
             )
         })
     }
 
     render():JSX.Element{
-        console.log("props",this.props.todo)
         return (
             <div>
-                <button onClick={this.onClickButton}>Fetch</button>
+                <button onClick={this.onButtonClick}>Fetch</button>
                 {this.props.todo.length === 0 ? <p>Your List Is Empty</p>: this.renderList()}
             </div>
         )
@@ -38,4 +46,4 @@ const mapStateToProps = (state:StoreState): {todo:ToDo[]} => {
     }
 }
 
-export const App =  connect(mapStateToProps,{fetchTodo})(_App )
+export const App =  connect(mapStateToProps,{fetchTodo, removeTodo})(_App )
