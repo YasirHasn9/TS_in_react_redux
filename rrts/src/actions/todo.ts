@@ -23,6 +23,11 @@ export interface FetchTodoActions {
     payload:ToDo[]
 }
 
+
+export interface DeleteToDoAction {
+    type:ActionTypes.deleteToDo,
+    payload:number
+}
 const url = "http://jsonplaceholder.typicode.com/todos"
 export const fetchTodo = () => {
     // here , we are gonna make a network request
@@ -44,5 +49,14 @@ export const fetchTodo = () => {
             payload:response.data
         })
     
+    }
+}
+
+export const deleteToDo = (id:number) => {
+    return (dispatch:Dispatch) => {
+        dispatch<DeleteToDoAction>({
+            type:ActionTypes.deleteToDo,
+            payload:id
+        })
     }
 }
